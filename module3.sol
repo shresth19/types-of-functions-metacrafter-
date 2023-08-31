@@ -13,4 +13,22 @@ contract MyToken is ERC20, ERC20Burnable, Ownable {
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
+
+    // Custom burn function to burn a specific amount of tokens
+    function burnTokens(uint256 amount) external {
+        _burn(msg.sender, amount);
+    }
+
+    // Custom transfer function that burns a percentage of the transferred amount
+    function transferWithBurn(address recipient, uint256 amount, uint256 burnPercentage) external returns (bool) {
+        require(burnPercentage <= 100, "Burn percentage must be between 0 and 100");
+        
+        uint256 burnAmount = (amount * burnPercentage) / 100;
+        uint256 transferAmount = amount - burnAmount;
+        
+        _burn(msg.sender, burnAmount);
+        _transfer(msg.sender, recipient, transferAmount);
+        
+        return true;
+    }
 }
