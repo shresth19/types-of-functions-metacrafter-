@@ -1,36 +1,41 @@
-# MyToken ERC20 Smart Contract
+# Token Smart Contract
 
-This repository contains a basic ERC20 token smart contract named `MyToken`. The contract inherits from OpenZeppelin's `ERC20`, `ERC20Burnable`, and `Ownable` contracts, providing functionalities for creating, managing, and burning tokens.
+This Solidity smart contract represents a basic token with functionalities for minting, transferring, and burning tokens.
 
-## Overview
+## Token Details
 
-The `MyToken` contract offers the following features:
+- **Name**: TOKEN
+- **Symbol**: TKN
 
-- Token name: MyToken
-- Token symbol: MTK
-- Initial supply: 100 tokens
-- Minting: The owner can mint new tokens.
+## Contract Owner
 
-## Prerequisites
+The contract creator becomes the owner and has exclusive privileges for minting tokens.
 
-- Solidity compiler version 0.8.9 or compatible.
-- Ethereum development environment (e.g., Remix, Truffle, Hardhat).
+## Functions
 
-## Usage
+- **Mint Tokens**
+  - Function: `mint(address to, uint256 amount)`
+  - Description: Allows the owner to create and assign tokens to a specified address.
+  - Usage: Only the owner can mint tokens.
 
-1. Clone this repository.
-2. Install the required dependencies using your package manager (e.g., npm or yarn) with `npm install` or `yarn install`.
-3. Import the contract in your Ethereum development environment.
-4. Compile the contract using Solidity 0.8.9 or a compatible version.
-5. Deploy the contract to your desired Ethereum network.
-6. Interact with the contract's functions using the appropriate method calls.
+- **Transfer Tokens**
+  - Function: `transfer(address to, uint256 amount)`
+  - Description: Enables token transfer from the sender's address to another address.
+  - Usage: Ensure the sender has a sufficient token balance.
 
-## Functionality
+- **Burn Tokens**
+  - Function: `burn(uint256 amount)`
+  - Description: Allows a token holder to burn (destroy) their own tokens, reducing the total supply.
+  - Usage: Ensure the sender has a sufficient token balance.
 
-### Minting
+## Ownership Control
 
-The owner of the contract can mint new tokens using the `mint` function. This function creates and assigns additional tokens to a specified address.
+The `onlyOwner` modifier restricts certain functions to be callable only by the contract owner.
 
-##Licence
-This smart contract is open-source and licensed under the MIT License. See the LICENSE file for more details.
+### SPDX-License-Identifier
 
+This contract is provided without a specific license, meaning it has no particular usage restrictions or permissions associated with it. You can use and modify it as you see fit.
+
+## Compatibility
+
+This contract is compatible with Solidity versions greater than or equal to 0.7.0 and less than 0.9.0.
