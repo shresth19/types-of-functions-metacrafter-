@@ -1,30 +1,16 @@
-// SPDX-License-Identifier: UNLICENCED
-pragma solidity >=0.7.0 <0.9.0;
-contract Token {
-    string public name = "TOKEN";
-    string public symbol = "TKN";
-    uint256 public totalSupply;
-    mapping(address => uint256) public balances;
-    address public owner;
-    constructor() {
-        owner = msg.sender;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyToken is ERC20, ERC20Burnable, Ownable {
+    constructor() ERC20("SHRESTH", "SHR") {
+        _mint(msg.sender, 1000 * 10 ** decimals());
     }
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can mint tokens");
-        _;
-    }
+
     function mint(address to, uint256 amount) public onlyOwner {
-        totalSupply += amount;
-        balances[to] += amount;
-    }
-    function transfer(address to, uint256 amount) public {
-        require(balances[msg.sender] >= amount, "Insufficient balance");
-        balances[msg.sender] -= amount;
-        balances[to] += amount;
-    }
-    function burn(uint256 amount) public {
-        require(balances[msg.sender] >= amount, "Insufficient balance");
-        balances[msg.sender] -= amount;
-        totalSupply -= amount;
+        _mint(to, amount);
     }
 }
