@@ -4,8 +4,8 @@ This Solidity smart contract represents a basic token with functionalities for m
 
 ## Token Details
 
-- **Name**: TOKEN
-- **Symbol**: TKN
+- **Name**: SHRESTH
+- **Symbol**: okok
 
 ## Contract Owner
 
